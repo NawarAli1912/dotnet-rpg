@@ -30,6 +30,11 @@ namespace dotnet_rpg.Controllers
         {
             var result = await _charactersService.GetCharacterById(id);
 
+            if (result.Data is null) 
+            {
+                return NotFound(result);
+            }
+
             return Ok(result);
         }
 

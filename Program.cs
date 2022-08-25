@@ -1,11 +1,16 @@
 global using dotnet_rpg.Models;
 using dotnet_rpg.Contracts;
+using dotnet_rpg.Data;
 using dotnet_rpg.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddDbContext<DataContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    
 builder.Services.AddControllers();
 
 
